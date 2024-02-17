@@ -67,13 +67,6 @@ fun AppScreen(
                             )
                         }
                     )
-                },
-                bottomBar = {
-                    if (maxHeight > ScreenHeightBreakpoints.phoneLandscape) {
-                        BottomNavigationAppBar(
-                            navHost
-                        )
-                    }
                 }
             ) { paddingValues ->
                 Box(
@@ -92,67 +85,6 @@ fun AppScreen(
                     }
                 }
             }
-        }
-    }
-}
-
-@Composable
-private fun BottomNavigationAppBar(
-    navHost: NavigationHost
-) {
-    if (navHost.canGoUp()) {
-        NavigationBar(
-            containerColor = MaterialTheme.colorScheme.secondaryContainer
-        ) {
-            NavigationBarItem(
-                label = { Text("Prev") },
-                icon = {
-                    Icon(
-                        Icons.Filled.ArrowLeft,
-                        contentDescription = "Previous screen",
-                        tint = if (navHost.hasPreviousScreen()) {
-                            MaterialTheme.colorScheme.onSurface
-                        } else {
-                            MaterialTheme.colorScheme.onSurface.copy(
-                                alpha = 0.35f
-                            )
-                        }
-                    )
-                },
-                enabled = navHost.hasPreviousScreen(),
-                onClick = { navHost.goPreviousScreen() },
-                selected = false
-            )
-            NavigationBarItem(
-                label = { Text("Home") },
-                icon = {
-                    Icon(
-                        Icons.Filled.Home,
-                        contentDescription = "Home",
-                    )
-                },
-                onClick = { navHost.goHome() },
-                selected = false
-            )
-            NavigationBarItem(
-                label = { Text("Next") },
-                icon = {
-                    Icon(
-                        Icons.Filled.ArrowRight,
-                        contentDescription = "Next screen",
-                        tint = if (navHost.hasNextScreen()) {
-                            MaterialTheme.colorScheme.onSurface
-                        } else {
-                            MaterialTheme.colorScheme.onSurface.copy(
-                                alpha = 0.35f
-                            )
-                        }
-                    )
-                },
-                enabled = navHost.hasNextScreen(),
-                onClick = { navHost.goNextScreen() },
-                selected = false
-            )
         }
     }
 }
